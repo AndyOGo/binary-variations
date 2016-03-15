@@ -162,7 +162,7 @@
             }
 
             // if both filters are given we have to deal with precedence
-            if (includeLength && exclusionLength) {
+            if (includeLength && excludeLength) {
                 if (precedence && !includeFlag ||
                     !precedence && excludeFlag) {
                     continue;
@@ -170,7 +170,7 @@
             }
             // normal inclusion/exclusion checks
             else if (includeLength && !includeFlag ||
-                exclusionLength && excludeFlag) {
+                excludeLength && excludeFlag) {
                 continue;
             }
 
