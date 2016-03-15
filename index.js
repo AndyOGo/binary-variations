@@ -34,14 +34,14 @@
      * @param {Function} [callback] - A Callback to call for every matched combination.
      * @returns {Array} - Returns an array of possible binary, ordered permutations.
      *
-     * @example <caption>All permutations</cation>
+     * @example <caption>All permutations</caption>
      *
      * var binaryVariations = require('binary-variations');
      *
      * binaryVariations(['a', 'b', 'c']);
      * => [["a"], ["b"], ["a", "b"], ["c"], ["a", "c"], ["b", "c"], ["a", "b", "c"]]
      *
-     * @example <caption>Exclusion</cation>
+     * @example <caption>Exclusion</caption>
      * var binaryVariations = require('binary-variations');
      *
      * binaryVariations(['a', 'b', 'c', 'd'], {
