@@ -33,6 +33,16 @@ var binaryVariations = require('binary-variations');
 binaryVariations(['a', 'b', 'c']);
 => [["a"], ["b"], ["a", "b"], ["c"], ["a", "c"], ["b", "c"], ["a", "b", "c"]]
 ```
+**Example** *(Inclusion)*  
+```js
+var binaryVariations = require('binary-variations');
+
+binaryVariations(['a', 'b', 'c', 'd'], {
+ // include only 'a' or containing 'a' and 'b' or containing 'b' and 'c'
+ include: [ 'a', ['a', 'b'], ['b', 'c'] ]
+});
+=> [["a"], ["a", "b"], ["b", "c"], ["a", "b", "c"], ["a", "b", "d"], ["b", "c", "d"], ["a", "b", "c", "d"]]
+```
 **Example** *(Exclusion)*  
 ```js
 var binaryVariations = require('binary-variations');
@@ -41,7 +51,7 @@ binaryVariations(['a', 'b', 'c', 'd'], {
  // exclude only 'a' or containing 'a' and 'b' or containing 'b' and 'c'
  exclude: [ 'a', ['a', 'b'], ['b', 'c'] ]
 });
-=>
+=> [["b"], ["c"], ["a", "c"], ["d"], ["a", "d"], ["b", "d"], ["c", "d"], ["a", "c", "d"]]
 ```
 
 * [binaryVariations](#module_binaryVariations) ⇒ <code>Array</code>
