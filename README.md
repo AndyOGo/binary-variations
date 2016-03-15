@@ -25,18 +25,16 @@ considering optional inclusion/exclusion filter.
 | [filter.precedence] | <code>boolean</code> | <code>true</code> | Whether the inclusion filter takes precedence or not. |
 | [callback] | <code>function</code> |  | A Callback to call for every matched combination. |
 
-**Example**  
+**Example** *(All permutations)*  
 ```js
-<caption>All permutations</cation>
 
 var binaryVariations = require('binary-variations');
 
 binaryVariations(['a', 'b', 'c']);
 => [["a"], ["b"], ["a", "b"], ["c"], ["a", "c"], ["b", "c"], ["a", "b", "c"]]
 ```
-**Example**  
+**Example** *(Exclusion)*  
 ```js
-<caption>Exclusion</cation>
 var binaryVariations = require('binary-variations');
 
 binaryVariations(['a', 'b', 'c', 'd'], {
