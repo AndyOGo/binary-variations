@@ -1,0 +1,24 @@
+{
+  "name": "binary-variations",
+  "version": "1.0.0",
+  "description": "A small permutations module, which gives you all possible binary variations in order. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:AndyOGo/binary-variations.git"
+  },
+  "keywords": [
+    "permutations",
+    "variations",
+    "binary-variations"
+  ],
+  "author": "Andreas Deuschlinger",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AndyOGo/binary-variations/issues"
+  },
+  "homepage": "https://github.com/AndyOGo/binary-variations"
+}
