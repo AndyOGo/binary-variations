@@ -25,6 +25,7 @@
      * Computes all possible binary ordered permutations of a given variations array,
      * considering optional inclusion/exclusion filter.
      *
+     * @exports binaryVariations
      * @param {Array} variations - A array of variations who's binary, ordered permutations you want to compute.
      * @param {Object} [filter] - A filter object containing inclusion or exclusion rules.
      * @param {Array} [filter.include] - An array of items or combination of items to include.
@@ -192,6 +193,7 @@
      * Returns the number of all possible variations.
      * Which is the sum of (2^n)-1.
      *
+     * @memberOf module:binaryVariations
      * @param {Array} variations - The array of possible variations.
      * @returns {number} Returns the amount of possible combinations.
      * @example
@@ -218,6 +220,7 @@
     /**
      * The `join()` function joins all element of `variations` into a string.
      *
+     * @memberOf module:binaryVariations
      * @param {Array} variations - The variations array to join.
      * @param {string} [separator=,] - Specifies a string to separate each element of the array.
      * @param {string} [prefix] - The prefix prepended.
