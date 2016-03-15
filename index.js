@@ -29,7 +29,7 @@
      * @param {Array} variations - A array of variations who's binary, ordered permutations you want to compute.
      * @param {Object} [filter] - A filter object containing inclusion or exclusion rules.
      * @param {Array} [filter.include] - An array of items or combination of items to include.
-     * @param {Array} [filter.exclude] - An array or items or combination if items to exclude.
+     * @param {Array} [filter.exclude] - An array of items or combination of items to exclude.
      * @param {boolean} [filter.precedence=true] - Whether the inclusion filter takes precedence or not.
      * @param {Function} [callback] - A Callback to call for every matched combination.
      * @returns {Array} - Returns an array of possible binary, ordered permutations.
@@ -204,7 +204,7 @@
      *
      * @memberOf module:binaryVariations
      * @param {Array} variations - The array of possible variations.
-     * @returns {number} Returns the amount of possible combinations.
+     * @returns {number} - Returns the amount of possible combinations.
      * @example
      *
      * var binaryVariations = require('binary-variations');
@@ -234,7 +234,7 @@
      * @param {string} [separator=,] - Specifies a string to separate each element of the array.
      * @param {string} [prefix] - The prefix prepended.
      * @param {string} [suffix] - The suffix appended.
-     * @returns {string} Returns all elements of `variations` joined into a string.
+     * @returns {string} - Returns all elements of `variations` joined into a string.
      *
      * @example <caption>Default separator</caption>
      *
