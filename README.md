@@ -52,7 +52,7 @@ considering optional inclusion/exclusion filter.
 | variations | <code>Array</code> |  | A array of variations who's binary, ordered permutations you want to compute. |
 | [filter] | <code>Object</code> |  | A filter object containing inclusion or exclusion rules. |
 | [filter.include] | <code>Array</code> |  | An array of items or combination of items to include. |
-| [filter.exclude] | <code>Array</code> |  | An array or items or combination if items to exclude. |
+| [filter.exclude] | <code>Array</code> |  | An array of items or combination of items to exclude. |
 | [filter.precedence] | <code>boolean</code> | <code>true</code> | Whether the inclusion filter takes precedence or not. |
 | [callback] | <code>function</code> |  | A Callback to call for every matched combination. |
 
@@ -96,7 +96,7 @@ Returns the number of all possible variations.
 Which is the sum of (2^n)-1.
 
 **Kind**: static method of <code>[binaryVariations](#module_binaryVariations)</code>  
-**Returns**: <code>number</code> - Returns the amount of possible combinations.  
+**Returns**: <code>number</code> - - Returns the amount of possible combinations.  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -125,7 +125,7 @@ expect( ['a', 'b', 'c', 'd'] );
 The `join()` function joins all element of `variations` into a string.
 
 **Kind**: static method of <code>[binaryVariations](#module_binaryVariations)</code>  
-**Returns**: <code>string</code> - Returns all elements of `variations` joined into a string.  
+**Returns**: <code>string</code> - - Returns all elements of `variations` joined into a string.  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
