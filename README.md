@@ -22,7 +22,7 @@ E.g. assume a list of a, b, c (or in programming terms `['a', 'b', 'c']`).
 |   | b | c |
 | a | b | c |
 
-Which gives us 7 combination, or as it turns out [(2^n) - 1] - where n is the number of items.
+Which gives us 7 combinations, or as it turns out [`(2^n) - 1`] - where n is the number of items.
 In this case: `(2^3) - 1 = (2*2*2) - 1 = 8 - 1 = 7`
 
 Actually this is equal to the possible combinations of n bits -1.
