@@ -19,76 +19,149 @@ describe('binary-variations', function() {
 
     describe('filter', function() {
 
-        it('should include single items', function () {
-            var variations = ['a', 'b', 'c'];
-            var filter = {
-                include: ['b']
-            };
-            var permutations = binaryVariations(variations, filter);
+        describe('include', function() {
+            it('should include single items', function () {
+                var variations = ['a', 'b', 'c'];
+                var filter = {
+                    include: ['b']
+                };
+                var permutations = binaryVariations(variations, filter);
 
-            expect(permutations.length).toBe(1);
-            expect(permutations[0]).toBe('b');
+                expect(permutations.length).toBe(1);
+                expect(permutations[0][0]).toBe('b');
 
-            filter = {
-                include: ['b', 'c']
-            };
-            permutations = binaryVariations(variations, filter);
+                filter = {
+                    include: ['b', 'c']
+                };
+                permutations = binaryVariations(variations, filter);
 
-            expect(permutations.length).toBe(2);
-            expect(permutations.indexOf('b')).toBeGreaterThan(-1);
-            expect(permutations.indexOf('c')).toBeGreaterThan(-1);
+                expect(permutations.length).toBe(2);
+
+                expect(permutations[0].join()).toMatch(/^[bc]$/);
+                expect(permutations[1].join()).toMatch(/^[bc]$/);
+            });
+
+            it('should include containing combinations', function () {
+                var variations = ['a', 'b', 'c', 'd'];
+                var filter = {
+                    include: [['b', 'd']]
+                };
+                var permutations = binaryVariations(variations, filter);
+
+                expect(permutations.length).toBeGreaterThan(Math.pow(2, 2) - 1);
+
+                for (var i = 0; i < permutations.length; i++) {
+                    var permutation = permutations[0];
+
+                    expect(permutation.indexOf('b')).toBeGreaterThan(-1);
+                    expect(permutation.indexOf('d')).toBeGreaterThan(-1);
+                }
+            });
         });
 
-        it('should include containing combinations', function () {
-            var variations = ['a', 'b', 'c', 'd'];
-            var filter = {
-                include: [['b', 'd']]
-            };
-            var permutations = binaryVariations(variations, filter);
+        describe('exclude', function() {
+            it('should exclude single items', function () {
+                var variations = ['a', 'b', 'c'];
+                var filter = {
+                    exclude: ['b']
+                };
+                var permutations = binaryVariations(variations, filter);
+                var permutationsLength = Math.pow(2, variations.length) - 1;
 
-            expect(permutations.length).toBeGreaterThan(Math.pow(2, 2) - 1);
+                expect(permutations.length).toBe(permutationsLength - 1);
 
-            for (var i = 0; i < permutations.length; i++) {
-                var permutation = permutations[0];
+                for (var i = 0; i < permutations.length; i++) {
+                    var permutation = permutations[i];
 
-                expect(permutation.indexOf('b')).toBeGreaterThan(-1);
-                expect(permutation.indexOf('d')).toBeGreaterThan(-1);
-            }
+                    if (permutation.length === 1) {
+                        expect(permutations[0]).not.toBe('b');
+                    }
+                }
+
+                filter = {
+                    exclude: ['b', 'c']
+                };
+                permutations = binaryVariations(variations, filter);
+
+                expect(permutations.length).toBe(permutationsLength - 2);
+
+                for (var i = 0; i < permutations.length; i++) {
+                    var permutation = permutations[0];
+
+                    if (permutation.length === 1) {
+                        expect(permutations[0]).not.toBe('b');
+                        expect(permutations[0]).not.toBe('c');
+                    }
+                }
+            });
+
+            it('should exclude containing combinations', function () {
+                var variations = ['a', 'b', 'c', 'd'];
+                var filter = {
+                    exclude: [['b', 'd']]
+                };
+                var permutations = binaryVariations(variations, filter);
+                var permutationsLength = Math.pow(2, variations.length) - 1;
+
+                expect(permutations.length).toBeLessThan(permutationsLength - (Math.pow(2, 2) - 1));
+
+                for (var i = 0; i < permutations.length; i++) {
+                    var permutation = permutations[0];
+
+                    if (permutation.length > 1) {
+                        expect(permutation.indexOf('b')).toBe(-1);
+                        expect(permutation.indexOf('d')).toBe(-1);
+                    }
+                }
+            });
         });
 
-        it('should exclude single items', function () {
-            var variations = ['a', 'b', 'c'];
-            var filter = {
-                exclude: ['b']
-            };
-            var permutations = binaryVariations(variations, filter);
-            var permutationsLength = Math.pow(2, variations.length) - 1;
+        describe('precedence', function() {
+            it('should give precedence to include by default', function() {
+                var variations = ['a', 'b', 'c'];
+                var filter = {
+                    include: ['b'],
+                    exclude: ['b']
+                };
+                var permutations = binaryVariations(variations, filter);
 
-            expect(permutations.length).toBe(permutationsLength - 1);
+                expect(permutations.length).toBe(1);
+                expect(permutations[0][0]).toBe('b');
+            });
 
-            for (var i = 0; i < permutations.length; i++) {
-                var permutation = permutations[0];
+            it('should give precedence to include if `precedence=true`', function() {
+                var variations = ['a', 'b', 'c'];
+                var filter = {
+                    include: ['b'],
+                    exclude: ['b'],
+                    precedence: true
+                };
+                var permutations = binaryVariations(variations, filter);
 
-                if (permutation.length === 1) {
-                    expect(permutations[0]).not.toBe('b');
+                expect(permutations.length).toBe(1);
+                expect(permutations[0][0]).toBe('b');
+            });
+
+            it('should give precedence to exclude if `precedence=false`', function() {
+                var variations = ['a', 'b', 'c'];
+                var filter = {
+                    include: ['b'],
+                    exclude: ['b'],
+                    precedence: false
+                };
+                var permutations = binaryVariations(variations, filter);
+                var permutationsLength = Math.pow(2, variations.length) - 1;
+
+                expect(permutations.length).toBe(permutationsLength - 1);
+
+                for (var i = 0; i < permutations.length; i++) {
+                    var permutation = permutations[i];
+
+                    if (permutation.length === 1) {
+                        expect(permutations[0]).not.toBe('b');
+                    }
                 }
-            }
-
-            filter = {
-                exclude: ['b', 'c']
-            };
-            permutations = binaryVariations(variations, filter);
-
-            expect(permutations.length).toBe(permutationsLength - 2);
-
-            for (var i = 0; i < permutations.length; i++) {
-                var permutation = permutations[0];
-
-                if (permutation.length === 1) {
-                    expect(permutations[0]).not.toBe('b');
-                    expect(permutations[0]).not.toBe('c');
-                }
-            }
+            });
         });
     });
 
