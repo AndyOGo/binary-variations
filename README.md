@@ -5,6 +5,37 @@ Install `binary-variations` as dependency (append --save-dev for development onl
 ```shell
 npm install binary-variations
 ```
+# Explanation
+
+Assume you have given a list of items, which you want to know all possible combinations
+who qualify that those items stay in order as they are defined and they don't repeat, but items can be omitted.
+
+E.g. assume a list of a, b, c (or in programming terms `['a', 'b', 'c']`).
+
+| a | b | c |
+| --- | --- | --- |
+| a |   |   |
+|   | b |   |
+| a | b |   |
+|   |   | c |
+| a |   | c |
+|   | b | c |
+| a | b | c |
+
+Which gives us 7 combination, or as it turns out [(2^n) - 1] - where n is the number of items.
+In this case: `(2^3) - 1 = (2*2*2) - 1 = 8 - 1 = 7`
+
+Actually this is equal to the possible combinations of n bits -1.
+
+| 1 bit | 2 bit | 3 bit |
+| --- | --- | --- |
+| 1 | 0 | 0 |
+| 0 | 1 | 0 |
+| 1 | 1 | 0 |
+| 0 | 0 | 1 |
+| 1 | 0 | 1 |
+| 0 | 1 | 1 |
+| 1 | 1 | 1 |
 
 # API Documentation
 
