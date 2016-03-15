@@ -41,6 +41,15 @@
      * binaryVariations(['a', 'b', 'c']);
      * => [["a"], ["b"], ["a", "b"], ["c"], ["a", "c"], ["b", "c"], ["a", "b", "c"]]
      *
+     * @example <caption>Inclusion</caption>
+     * var binaryVariations = require('binary-variations');
+     *
+     * binaryVariations(['a', 'b', 'c', 'd'], {
+     *  // include only 'a' or containing 'a' and 'b' or containing 'b' and 'c'
+     *  include: [ 'a', ['a', 'b'], ['b', 'c'] ]
+     * });
+     * => [["a"], ["a", "b"], ["b", "c"], ["a", "b", "c"], ["a", "b", "d"], ["b", "c", "d"], ["a", "b", "c", "d"]]
+     *
      * @example <caption>Exclusion</caption>
      * var binaryVariations = require('binary-variations');
      *
@@ -48,7 +57,7 @@
      *  // exclude only 'a' or containing 'a' and 'b' or containing 'b' and 'c'
      *  exclude: [ 'a', ['a', 'b'], ['b', 'c'] ]
      * });
-     * =>
+     * => [["b"], ["c"], ["a", "c"], ["d"], ["a", "d"], ["b", "d"], ["c", "d"], ["a", "c", "d"]]
      */
     function binaryVariations(variations, filter, callback) {
         var filterType = typeof filter;
